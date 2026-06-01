@@ -2,36 +2,30 @@ import "./config.js";
 
 import Groq from "groq-sdk";
 
-const groq = new Groq({ apikey: process.env.GROQ_API_KEY });
-
-async function main() {
-  const response = await generateGroqResponse();
-  console.log(response.choices[0].message);
-}
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export const generateGroqResponse = async () => {
   return groq.chat.completions.create({
+    temperature: 0,
+    frequency_penalty: 0,
     model: "llama-3.3-70b-versatile",
     messages: [
       {
         role: "system",
-        content:
-          "you are a fitness coach Super. behave as if you are a helpful assistant. Check if user workout is good enough or not.Correct it in brief and simple way.",
+        content: "You are a creative writer.",
       },
       {
         role: "user",
-        content: `Monday:push, Tuesday:pull, Wednesday:legs rest, Thursday:push, Friday:pull, Saturday:legs rest, Sunday:rest.
-          
-          issue:
-
-          fixes:
-
-          routine:
-
-          `,
+        content:
+          "Give me a unique, 1-sentence sci-fi story idea about a time traveler.",
       },
     ],
   });
 };
+
+async function main() {
+  const resp1 = await generateGroqResponse();
+  console.log(resp1.choices[0].message.content);
+}
 
 main();
