@@ -12,11 +12,12 @@ export const generateGroqResponse = async () => {
       {
         role: "system",
         content:
-          "You are a data extractor. Parse the text and respond ONLY in JSON format.",
+          "You are a fitness coach. Extract the data of person and create a reasonable workout plan for them. Give output in json format",
       },
       {
         role: "user",
-        content: "John Doe is 30 years old and lives in New York.",
+        content:
+          "John Doe is 30 years old and lives in New York. vegetarian, 105 kg, 5 feet 10 inches tall, and has a sedentary lifestyle. He wants to lose weight and improve his overall fitness. Can you create a workout plan for him?",
       },
     ],
   });
